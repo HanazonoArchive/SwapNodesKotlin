@@ -15,7 +15,7 @@ class HelloApplication : Application() {
     private lateinit var stage: Stage
 
     override fun start(stage: Stage) {
-        this.stage = stage // Assign the stage parameter to the class variable
+        this.stage = stage
 
         val fxmlLoader = FXMLLoader(HelloApplication::class.java.getResource("MainUI.fxml"))
         val scene = Scene(fxmlLoader.load(), 600.0, 400.0)

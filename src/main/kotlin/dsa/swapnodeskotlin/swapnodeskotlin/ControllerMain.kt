@@ -12,7 +12,21 @@ import javafx.stage.Stage
 import kotlin.system.exitProcess
 import java.io.File
 
+// Importing Algorithm
+import dsa.swapnodesjava.swapnodesjava.Algorithm1
+
 class ControllerMain {
+
+    // Algorithm Instances
+    private lateinit var algorithm1: Algorithm1
+
+    // Need to changes
+    //private lateinit var algorithm2: Algorithm1
+    //private lateinit var algorithm3: Algorithm1
+    //private lateinit var algorithm4: Algorithm1
+    //private lateinit var algorithm5: Algorithm1
+    //private lateinit var algorithm6: Algorithm1
+    //private lateinit var algorithm7: Algorithm1
 
     @FXML
     private lateinit var CloseButton: Pane
@@ -32,27 +46,18 @@ class ControllerMain {
     // Algorithm Radio Button
     @FXML
     lateinit var RadioAlgorithm1: RadioButton
-
-    @FXML
     lateinit var RadioAlgorithm2: RadioButton
-
-    @FXML
     lateinit var RadioAlgorithm3: RadioButton
-
-    @FXML
     lateinit var RadioAlgorithm4: RadioButton
-
-    @FXML
     lateinit var RadioAlgorithm5: RadioButton
-
-    @FXML
     lateinit var RadioAlgorithm6: RadioButton
-
-    @FXML
     lateinit var RadioAlgorithm7: RadioButton
 
     private lateinit var stage: Stage
     private lateinit var radioToggleGroup: ToggleGroup
+
+    // Common Declaration
+    private var integerPairs: List<List<Int>> = emptyList() // Check
 
     @FXML
     private fun initialize() {
@@ -73,8 +78,8 @@ class ControllerMain {
     }
 
     @FXML
-    private fun handleHelpButtonClicked(){
-        showHelpButton("UI - Agsoy\nBackend - Dingal\nImprovements - Pechayco & Palma\n\n -To Make a Text File\nText File must be composed of Integers to be Integer\nIf Text File composed of Mixed, it will be String")
+    private fun handleHelpButtonClicked() {
+        showHelpButton("UI - Agsoy\nBackend - Dingal\nImprovements - Pechayco & Palma\n\n -To Make a Text File\nText File must be composed of Integers.")
     }
 
     @FXML
@@ -98,12 +103,11 @@ class ControllerMain {
             FileNameLabel.text = fileName
             println("Selected file: ${selectedFile.absolutePath}")
 
-            // Read the file and categorize the contents
-            val (integers, strings) = readFileAndCategorize(selectedFile)
+            // Read the file and store in integerPairs
+            integerPairs = readFileAsPairs(selectedFile)
 
-            // Print the arrays for demonstration
-            println("Integer Array: ${integers.joinToString()}")
-            println("String Array: ${strings.joinToString()}")
+            // Print the array for demonstration
+            println("Integer Array: ${integerPairs.joinToString()}")
 
             // Start the timer using nanoseconds
             val startTime = System.nanoTime()
@@ -121,45 +125,36 @@ class ControllerMain {
         }
     }
 
-    private fun readFileAndCategorize(file: File): Pair<IntArray, ArrayList<String>> {
-        val integers = mutableListOf<Int>()
-        val strings = ArrayList<String>()
+    private fun readFileAsPairs(file: File): List<List<Int>> {
+        val pairs = mutableListOf<List<Int>>() // Initialize a list to hold the pairs
 
         file.bufferedReader().use { reader ->
             val content = reader.readText().trim() // Read entire file content
 
-            // Split by commas and trim whitespace
-            val parts = content.split(",").map { it.trim() }
+            // Split the content by new lines to handle each line separately
+            val lines = content.split("\n").map { it.trim() }
 
-            // Check if all parts can be parsed as integers
-            if (parts.all { it.isNotEmpty() && it.all { char -> char.isDigit() } }) {
-                // Convert to integers if all parts are valid
-                integers.addAll(parts.map { it.toInt() })
-            } else {
-                // Add each part to the string array individually
-                strings.addAll(parts) // Use addAll to put each part in the array
+            for (line in lines) {
+                // Split by spaces and trim whitespace for each line
+                val parts = line.split(" ").map { it.trim() }
+
+                // Convert each part to an integer and add as a list to pairs
+                if (parts.size == 2) { // Ensure there are exactly two parts
+                    val pair = parts.map { it.toInt() }
+                    pairs.add(pair) // Add the pair to the list
+                }
             }
         }
 
-        return Pair(integers.toIntArray(), strings)
+        return pairs // Return the list of pairs
     }
 
     private fun handleAlgorithmSelection() {
-        // Check which RadioButton is selected
-        val selectedToggle = radioToggleGroup.selectedToggle as? RadioButton
-        if (selectedToggle != null) {
-            val selectedAlgorithm = selectedToggle.text
-            println("Selected algorithm: $selectedAlgorithm")
-            // Call the corresponding method based on the selected algorithm
-            when (selectedAlgorithm) {
-                "Algorithm 1" -> algorithm1Method()
-                "Algorithm 2" -> algorithm2Method()
-                "Algorithm 3" -> algorithm3Method()
-                "Algorithm 4" -> algorithm4Method()
-                "Algorithm 5" -> algorithm5Method()
-                "Algorithm 6" -> algorithm6Method()
-                "Algorithm 7" -> algorithm7Method()
-            }
+        // Only supporting Algorithm 1 for now
+        if (radioToggleGroup.selectedToggle == RadioAlgorithm1) {
+            algorithm1Method()
+        } else if (radioToggleGroup.selectedToggle == RadioAlgorithm2){
+            algorithm2Method()
         }
     }
 
@@ -171,7 +166,7 @@ class ControllerMain {
         alert.showAndWait()
     }
 
-    private fun showHelpButton(message: String){
+    private fun showHelpButton(message: String) {
         val alert = Alert(AlertType.INFORMATION)
         alert.title = "Help"
         alert.headerText = "--Credits & Help--"
@@ -180,52 +175,35 @@ class ControllerMain {
     }
 
     private fun algorithm1Method() {
-        // Implement logic for Algorithm 1
-        println("Running Algorithm 1...")
-        // Simulate processing time
-        Thread.sleep(1000) // Replace this with actual algorithm logic
+        val n = integerPairs.size
+        val connections = Array(n) { IntArray(2) }
+        for (i in integerPairs.indices) {
+            connections[i][0] = integerPairs[i][0]
+            connections[i][1] = integerPairs[i][1]
+        }
+
+        algorithm1 = Algorithm1(n, connections)
+
+        println("inorder: ${algorithm1.inorder()}")
     }
 
-    private fun algorithm2Method() {
-        // Implement logic for Algorithm 2
-        println("Running Algorithm 2...")
-        // Simulate processing time
-        Thread.sleep(1500) // Replace this with actual algorithm logic
+    private fun algorithm2Method(){
+        println("This works")
     }
-
-    private fun algorithm3Method() {
-        // Implement logic for Algorithm 3
-        println("Running Algorithm 3...")
-        // Simulate processing time
-        Thread.sleep(2000) // Replace this with actual algorithm logic
+    private fun algorithm3Method(){
+        println("This works")
     }
-
-    private fun algorithm4Method() {
-        // Implement logic for Algorithm 4
-        println("Running Algorithm 4...")
-        // Simulate processing time
-        Thread.sleep(2500) // Replace this with actual algorithm logic
+    private fun algorithm4Method(){
+        println("This works")
     }
-
-    private fun algorithm5Method() {
-        // Implement logic for Algorithm 5
-        println("Running Algorithm 5...")
-        // Simulate processing time
-        Thread.sleep(3000) // Replace this with actual algorithm logic
+    private fun algorithm5Method(){
+        println("This works")
     }
-
-    private fun algorithm6Method() {
-        // Implement logic for Algorithm 6
-        println("Running Algorithm 6...")
-        // Simulate processing time
-        Thread.sleep(3500) // Replace this with actual algorithm logic
+    private fun algorithm6Method(){
+        println("This works")
     }
-
-    private fun algorithm7Method() {
-        // Implement logic for Algorithm 7
-        println("Running Algorithm 7...")
-        // Simulate processing time
-        Thread.sleep(4000) // Replace this with actual algorithm logic
+    private fun algorithm7Method(){
+        println("This works")
     }
 
     fun setStage(stage: Stage) {
