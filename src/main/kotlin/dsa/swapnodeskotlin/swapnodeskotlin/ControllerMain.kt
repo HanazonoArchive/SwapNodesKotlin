@@ -23,6 +23,12 @@ class ControllerMain {
     @FXML
     private lateinit var FileNameLabel: Label
 
+    @FXML
+    private lateinit var TimerLabel: Label
+
+    @FXML
+    private lateinit var HelpButton: Pane
+
     // Algorithm Radio Button
     @FXML
     lateinit var RadioAlgorithm1: RadioButton
@@ -67,6 +73,11 @@ class ControllerMain {
     }
 
     @FXML
+    private fun handleHelpButtonClicked(){
+        showHelpButton("UI - Agsoy\nBackend - Dingal\nImprovements - Pechayco & Palma\n\n -To Make a Text File\nText File must be composed of Integers to be Integer\nIf Text File composed of Mixed, it will be String")
+    }
+
+    @FXML
     private fun handleOpenFileButtonClicked() {
         // Check if an algorithm is selected before opening the file chooser
         if (radioToggleGroup.selectedToggle == null) {
@@ -94,8 +105,19 @@ class ControllerMain {
             println("Integer Array: ${integers.joinToString()}")
             println("String Array: ${strings.joinToString()}")
 
-            // Call the method based on the selected algorithm
-            handleAlgorithmSelection()
+            // Start the timer using nanoseconds
+            val startTime = System.nanoTime()
+            handleAlgorithmSelection() // Call the algorithm selection method
+            val endTime = System.nanoTime()
+
+            // Calculate the time taken in nanoseconds and convert to milliseconds for display
+            val durationInNanoseconds = endTime - startTime
+            val durationInMilliseconds = durationInNanoseconds / 1_000_000.0 // Convert to milliseconds
+            val durationFormatted = String.format("%.7f", durationInMilliseconds) // Format to 10 decimal places
+
+            // Display the time taken for the algorithm
+            TimerLabel.text = "$durationFormatted ms"
+            println("Time taken: $durationFormatted")
         }
     }
 
@@ -149,44 +171,67 @@ class ControllerMain {
         alert.showAndWait()
     }
 
+    private fun showHelpButton(message: String){
+        val alert = Alert(AlertType.INFORMATION)
+        alert.title = "Help"
+        alert.headerText = "--Credits & Help--"
+        alert.contentText = message
+        alert.showAndWait()
+    }
+
     private fun algorithm1Method() {
         // Implement logic for Algorithm 1
         println("Running Algorithm 1...")
+        // Simulate processing time
+        Thread.sleep(1000) // Replace this with actual algorithm logic
     }
 
     private fun algorithm2Method() {
         // Implement logic for Algorithm 2
         println("Running Algorithm 2...")
+        // Simulate processing time
+        Thread.sleep(1500) // Replace this with actual algorithm logic
     }
 
     private fun algorithm3Method() {
         // Implement logic for Algorithm 3
         println("Running Algorithm 3...")
+        // Simulate processing time
+        Thread.sleep(2000) // Replace this with actual algorithm logic
     }
 
     private fun algorithm4Method() {
         // Implement logic for Algorithm 4
         println("Running Algorithm 4...")
+        // Simulate processing time
+        Thread.sleep(2500) // Replace this with actual algorithm logic
     }
 
     private fun algorithm5Method() {
         // Implement logic for Algorithm 5
         println("Running Algorithm 5...")
+        // Simulate processing time
+        Thread.sleep(3000) // Replace this with actual algorithm logic
     }
 
     private fun algorithm6Method() {
         // Implement logic for Algorithm 6
         println("Running Algorithm 6...")
+        // Simulate processing time
+        Thread.sleep(3500) // Replace this with actual algorithm logic
     }
 
     private fun algorithm7Method() {
         // Implement logic for Algorithm 7
         println("Running Algorithm 7...")
+        // Simulate processing time
+        Thread.sleep(4000) // Replace this with actual algorithm logic
     }
 
     fun setStage(stage: Stage) {
         this.stage = stage
         OpenFileButton.setOnMouseClicked { handleOpenFileButtonClicked() }
         CloseButton.setOnMouseClicked { handleCloseButtonClicked() }
+        HelpButton.setOnMouseClicked { handleHelpButtonClicked() }
     }
 }

@@ -39,3 +39,18 @@
     -fx-background-color: #FFFF; /* Color of the selected circle */
     -fx-border-color: #FFFF; /* Border color for the selected state */
 }
+
+.resultBackgroundPane{
+    -fx-background-color: linear-gradient(to bottom right, #D95F59, #C63C51);
+    -fx-background-radius: 30 5 5 5;
+}
+
+.resultLabel{
+    -fx-background-color: #522258;
+    -fx-text-fill: #D95F59;
+    -fx-background-radius: 5 5 5 5;
+
+}.resultLabel2{
+    -fx-background-color: transparent;
+    -fx-text-fill: #522258;
+}

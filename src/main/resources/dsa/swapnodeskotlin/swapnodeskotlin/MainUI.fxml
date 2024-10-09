@@ -147,6 +147,37 @@
                   </RadioButton>
                </children>
             </Pane>
+            <Pane layoutX="226.0" layoutY="56.0" prefHeight="333.0" prefWidth="362.0" styleClass="resultBackgroundPane">
+               <children>
+                  <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="102.0" styleClass="resultLabel" text="Duration" textFill="#522258">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="TimerLabel" layoutX="15.0" layoutY="51.0" prefHeight="30.0" prefWidth="333.0" styleClass="resultLabel2" text="----.------- ms" textFill="#d95f59">
+                     <font>
+                        <Font name="Arial Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="14.0" layoutY="101.0" prefHeight="27.0" prefWidth="102.0" styleClass="resultLabel" text="Result" textFill="#522258">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="HelpButton" layoutX="258.0" layoutY="11.0" prefHeight="36.0" prefWidth="36.0" styleClass="Label">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/question.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
          </children>
       </Pane>
    </children>
