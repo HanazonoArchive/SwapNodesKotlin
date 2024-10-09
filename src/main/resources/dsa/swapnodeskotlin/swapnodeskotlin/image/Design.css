@@ -1,0 +1,41 @@
+.MainBackground {
+    -fx-background-color: linear-gradient(to bottom right, #522258, #8C3061);
+}
+
+.Label {
+    -fx-background-color: linear-gradient(to bottom right, #D95F59, #C63C51);
+    -fx-text-fill: #522258;
+    -fx-background-radius: 5 5 5 5;
+}
+
+
+.OpenFile {
+    -fx-background-color: linear-gradient(to bottom right, #D95F59, #C63C51);
+    -fx-text-fill: #522258;
+    -fx-background-radius: 5 5 5 5;
+}
+
+.AlgorithmBackground{
+    -fx-background-color: linear-gradient(to bottom right, #D95F59, #C63C51);
+    -fx-background-radius: 5 30 5 5;
+}
+
+.custom-radio-button .radiogroup {
+    -fx-background-color: #522258;
+}
+
+.custom-radio-button .radio {
+    -fx-background-color: transparent; /* Background of the circle */
+    -fx-border-color: #522258; /* Border color */
+    -fx-border-width: 1.2px; /* Border thickness */
+}
+
+.custom-radio-button .radio:selected {
+    -fx-background-color: #FFFF; /* Keep it transparent when selected */
+    -fx-border-color: #FFFF; /* Hide the border when selected */
+}
+
+.custom-radio-button .radio:selected:filled {
+    -fx-background-color: #FFFF; /* Color of the selected circle */
+    -fx-border-color: #FFFF; /* Border color for the selected state */
+}
