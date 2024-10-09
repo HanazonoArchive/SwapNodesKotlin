@@ -2,8 +2,10 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -145,6 +147,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </RadioButton>
+                  <Label layoutX="107.0" layoutY="35.0" text="(Implemented)" textFill="#522258">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
             <Pane layoutX="226.0" layoutY="56.0" prefHeight="333.0" prefWidth="362.0" styleClass="resultBackgroundPane">
@@ -154,16 +161,43 @@
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="TimerLabel" layoutX="15.0" layoutY="51.0" prefHeight="30.0" prefWidth="333.0" styleClass="resultLabel2" text="----.------- ms" textFill="#d95f59">
+                  <Label fx:id="TimerLabel" layoutX="15.0" layoutY="51.0" prefHeight="30.0" prefWidth="189.0" styleClass="resultLabel2" text="----.------- ms" textFill="#d95f59">
                      <font>
-                        <Font name="Arial Bold" size="25.0" />
+                        <Font name="Arial Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="14.0" layoutY="101.0" prefHeight="27.0" prefWidth="102.0" styleClass="resultLabel" text="Result" textFill="#522258">
+                  <Label alignment="CENTER" layoutX="14.0" layoutY="106.0" prefHeight="27.0" prefWidth="102.0" styleClass="resultLabel" text="Result" textFill="#522258">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Label>
+                  <Label alignment="CENTER" layoutX="208.0" layoutY="14.0" prefHeight="27.0" prefWidth="119.0" styleClass="resultLabel" text="Swap Nodes" textFill="#522258">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="209.0" layoutY="51.0" prefHeight="21.0" prefWidth="68.0" styleClass="resultLabel2" text="Node 1:" textFill="#d95f59">
+                     <font>
+                        <Font name="Arial Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="209.0" layoutY="83.0" prefHeight="21.0" prefWidth="68.0" styleClass="resultLabel2" text="Node 2:" textFill="#d95f59">
+                     <font>
+                        <Font name="Arial Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="Node1SwapTF" layoutX="277.0" layoutY="50.0" prefHeight="23.0" prefWidth="77.0" styleClass="TFColorTheme">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="Node2SwapTF" layoutX="277.0" layoutY="83.0" prefHeight="23.0" prefWidth="77.0" styleClass="TFColorTheme">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </TextField>
+                  <Canvas fx:id="OriginalCanvas" height="190.0" layoutX="6.0" layoutY="137.0" width="170.0" />
+                  <Canvas fx:id="ChangesCanvas" height="190.0" layoutX="186.0" layoutY="137.0" width="170.0" />
                </children>
             </Pane>
             <Pane fx:id="HelpButton" layoutX="258.0" layoutY="11.0" prefHeight="36.0" prefWidth="36.0" styleClass="Label">

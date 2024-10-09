@@ -1,19 +1,22 @@
 package dsa.swapnodeskotlin.swapnodeskotlin
 
+// Importing Algorithm
+import dsa.swapnodesjava.swapnodesjava.Algorithm1
 import javafx.fxml.FXML
 import javafx.scene.control.Alert
 import javafx.scene.control.Alert.AlertType
 import javafx.scene.control.Label
 import javafx.scene.control.RadioButton
+import javafx.scene.control.TextField
 import javafx.scene.control.ToggleGroup
 import javafx.scene.layout.Pane
 import javafx.stage.FileChooser
 import javafx.stage.Stage
-import kotlin.system.exitProcess
+import javafx.scene.canvas.Canvas
 import java.io.File
+import kotlin.system.exitProcess
+import javafx.scene.canvas.GraphicsContext
 
-// Importing Algorithm
-import dsa.swapnodesjava.swapnodesjava.Algorithm1
 
 class ControllerMain {
 
@@ -42,6 +45,22 @@ class ControllerMain {
 
     @FXML
     private lateinit var HelpButton: Pane
+
+    @FXML
+    private lateinit var Node1SwapTF: TextField
+
+    @FXML
+    private lateinit var Node2SwapTF: TextField
+
+    @FXML
+    private lateinit var OriginalCanvas: Canvas
+
+    @FXML
+    private lateinit var ChangesCanvas: Canvas
+
+
+    var node1: Int? = null
+    var node2: Int? = null
 
     // Algorithm Radio Button
     @FXML
@@ -88,6 +107,8 @@ class ControllerMain {
         if (radioToggleGroup.selectedToggle == null) {
             showAlert("Please select an algorithm before opening a file.")
             return
+        } else if (Node1SwapTF.text.isEmpty() && Node2SwapTF.text.isEmpty()) {
+            showAlertNodes("Please put the Swapping Nodes.")
         }
 
         val fileChooser = FileChooser()
@@ -107,17 +128,28 @@ class ControllerMain {
             integerPairs = readFileAsPairs(selectedFile)
 
             // Print the array for demonstration
-            println("Integer Array: ${integerPairs.joinToString()}")
+            println("Integer Pairs: ${integerPairs.joinToString()}")
+
+            // Create indexes from integerPairs
+            val indexes = convertPairsToIndexes(integerPairs)
+
+            // Get node values from TextFields
+            node1 = Node1SwapTF.text.toIntOrNull()
+            node2 = Node2SwapTF.text.toIntOrNull()
 
             // Start the timer using nanoseconds
             val startTime = System.nanoTime()
-            handleAlgorithmSelection() // Call the algorithm selection method
+
+            // Call the algorithm selection method
+            handleAlgorithmSelection()
+
+            // Stop the timer immediately after the algorithm execution
             val endTime = System.nanoTime()
 
             // Calculate the time taken in nanoseconds and convert to milliseconds for display
             val durationInNanoseconds = endTime - startTime
             val durationInMilliseconds = durationInNanoseconds / 1_000_000.0 // Convert to milliseconds
-            val durationFormatted = String.format("%.7f", durationInMilliseconds) // Format to 10 decimal places
+            val durationFormatted = String.format("%.7f", durationInMilliseconds) // Format to 7 decimal places
 
             // Display the time taken for the algorithm
             TimerLabel.text = "$durationFormatted ms"
@@ -145,8 +177,12 @@ class ControllerMain {
                 }
             }
         }
-
         return pairs // Return the list of pairs
+    }
+
+    private fun convertPairsToIndexes(pairs: List<List<Int>>): List<List<Int>> {
+        // Convert the list of pairs to the required List<List<Integer>> format
+        return pairs.map { it.toList() } // Since pairs are already lists, just return them
     }
 
     private fun handleAlgorithmSelection() {
@@ -166,6 +202,14 @@ class ControllerMain {
         alert.showAndWait()
     }
 
+    private fun showAlertNodes(message: String) {
+        val alert = Alert(AlertType.WARNING)
+        alert.title = "Warning"
+        alert.headerText = null
+        alert.contentText = message
+        alert.showAndWait()
+    }
+
     private fun showHelpButton(message: String) {
         val alert = Alert(AlertType.INFORMATION)
         alert.title = "Help"
@@ -175,16 +219,21 @@ class ControllerMain {
     }
 
     private fun algorithm1Method() {
-        val n = integerPairs.size
-        val connections = Array(n) { IntArray(2) }
-        for (i in integerPairs.indices) {
-            connections[i][0] = integerPairs[i][0]
-            connections[i][1] = integerPairs[i][1]
+        val queries: MutableList<Int?> = mutableListOf(node1, node2)
+
+        // Draw the original state
+        drawOriginalCanvas()
+
+        // Execute the swapNodes function
+        val result = Algorithm1.swapNodes(integerPairs, queries)
+
+        // Draw the changes
+        drawChangesCanvas(result)
+
+        // Print the results
+        for (inorder in result) {
+            println(inorder)
         }
-
-        algorithm1 = Algorithm1(n, connections)
-
-        println("inorder: ${algorithm1.inorder()}")
     }
 
     private fun algorithm2Method(){
@@ -204,6 +253,26 @@ class ControllerMain {
     }
     private fun algorithm7Method(){
         println("This works")
+    }
+
+    private fun drawOriginalCanvas() {
+        val gc = OriginalCanvas.graphicsContext2D
+        gc.clearRect(0.0, 0.0, OriginalCanvas.width, OriginalCanvas.height) // Clear previous drawings
+
+        // Example: Draw a simple representation (adjust based on your data structure)
+        for ((index, pair) in integerPairs.withIndex()) {
+            gc.fillText("Node: ${pair.joinToString(", ")}", 10.0, (index + 1) * 20.0)
+        }
+    }
+
+    private fun drawChangesCanvas(result: List<List<Int>>) {
+        val gc = ChangesCanvas.graphicsContext2D
+        gc.clearRect(0.0, 0.0, ChangesCanvas.width, ChangesCanvas.height) // Clear previous drawings
+
+        // Example: Draw the results after the swap (adjust based on your data structure)
+        for ((index, inorder) in result.withIndex()) {
+            gc.fillText("Swapped: ${inorder.joinToString(", ")}", 10.0, (index + 1) * 20.0)
+        }
     }
 
     fun setStage(stage: Stage) {
