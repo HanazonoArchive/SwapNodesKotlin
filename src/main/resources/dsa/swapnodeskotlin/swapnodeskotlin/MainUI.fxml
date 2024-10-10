@@ -4,6 +4,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -83,7 +84,7 @@
                   <Font name="Arial Bold" size="15.0" />
                </font>
             </Label>
-            <Pane layoutX="16.0" layoutY="196.0" prefHeight="193.0" prefWidth="200.0" styleClass="AlgorithmBackground">
+            <Pane layoutX="11.0" layoutY="332.0" prefHeight="57.0" prefWidth="200.0" styleClass="AlgorithmBackground">
                <children>
                   <Label fx:id="FileNameLabel1" layoutX="7.0" layoutY="7.0" prefHeight="21.0" prefWidth="137.0" text="Different Algorithm" textFill="#522258">
                      <font>
@@ -91,54 +92,6 @@
                      </font>
                   </Label>
                   <RadioButton fx:id="RadioAlgorithm1" layoutX="7.0" layoutY="33.0" mnemonicParsing="false" styleClass="custom-radio-button" text="Algorithm 1" textFill="#522258">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </RadioButton>
-                  <RadioButton fx:id="RadioAlgorithm2" layoutX="7.0" layoutY="55.0" mnemonicParsing="false" styleClass="custom-radio-button" text="Algorithm 2" textFill="#522258">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </RadioButton>
-                  <RadioButton fx:id="RadioAlgorithm3" layoutX="7.0" layoutY="77.0" mnemonicParsing="false" styleClass="custom-radio-button" text="Algorithm 3" textFill="#522258">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </RadioButton>
-                  <RadioButton fx:id="RadioAlgorithm4" layoutX="7.0" layoutY="99.0" mnemonicParsing="false" styleClass="custom-radio-button" text="Algorithm 4" textFill="#522258">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </RadioButton>
-                  <RadioButton fx:id="RadioAlgorithm5" layoutX="7.0" layoutY="121.0" mnemonicParsing="false" styleClass="custom-radio-button" text="Algorithm 5" textFill="#522258">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </RadioButton>
-                  <RadioButton fx:id="RadioAlgorithm6" layoutX="7.0" layoutY="143.0" mnemonicParsing="false" styleClass="custom-radio-button" text="Algorithm 6" textFill="#522258">
-                     <font>
-                        <Font name="Arial Bold" size="12.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </RadioButton>
-                  <RadioButton fx:id="RadioAlgorithm7" layoutX="7.0" layoutY="165.0" mnemonicParsing="false" styleClass="custom-radio-button" text="Algorithm 7" textFill="#522258">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>
@@ -214,6 +167,28 @@
                         <Image url="@image/question.png" />
                      </image>
                   </ImageView>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Label alignment="CENTER" layoutX="11.0" layoutY="200.0" prefHeight="21.0" prefWidth="119.0" styleClass="Label" text="Manual Input" textFill="#d95f59">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="ManualInputTextArea" layoutX="11.0" layoutY="224.0" prefHeight="104.0" prefWidth="200.0" styleClass="ManualInputTextArea" wrapText="true">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </TextArea>
+            <Pane fx:id="ManualButtonSubmit" layoutX="143.0" layoutY="200.0" prefHeight="21.0" prefWidth="68.0" styleClass="Label">
+               <children>
+                  <Label layoutX="10.0" layoutY="3.0" text="Submit" textFill="#522258">
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                  </Label>
                </children>
                <cursor>
                   <Cursor fx:constant="HAND" />
