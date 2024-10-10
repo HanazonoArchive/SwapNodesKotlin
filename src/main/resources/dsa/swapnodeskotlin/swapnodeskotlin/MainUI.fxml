@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
@@ -196,8 +195,16 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </TextField>
-                  <Canvas fx:id="OriginalCanvas" height="190.0" layoutX="6.0" layoutY="137.0" width="170.0" />
-                  <Canvas fx:id="ChangesCanvas" height="190.0" layoutX="186.0" layoutY="137.0" width="170.0" />
+                  <Label fx:id="ResultLabelAREA" alignment="TOP_LEFT" layoutX="7.0" layoutY="142.0" prefHeight="180.0" prefWidth="170.0" styleClass="resultLabel" text="Nodes...">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="SwappedLabelAREA" alignment="TOP_LEFT" layoutX="185.0" layoutY="142.0" prefHeight="180.0" prefWidth="170.0" styleClass="resultLabel" text="Swapped...">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
             <Pane fx:id="HelpButton" layoutX="258.0" layoutY="11.0" prefHeight="36.0" prefWidth="36.0" styleClass="Label">

@@ -53,10 +53,10 @@ class ControllerMain {
     private lateinit var Node2SwapTF: TextField
 
     @FXML
-    private lateinit var OriginalCanvas: Canvas
+    private lateinit var ResultLabelAREA: Label
 
     @FXML
-    private lateinit var ChangesCanvas: Canvas
+    private lateinit var SwappedLabelAREA: Label
 
 
     var node1: Int? = null
@@ -109,6 +109,7 @@ class ControllerMain {
             return
         } else if (Node1SwapTF.text.isEmpty() && Node2SwapTF.text.isEmpty()) {
             showAlertNodes("Please put the Swapping Nodes.")
+            return
         }
 
         val fileChooser = FileChooser()
@@ -256,24 +257,37 @@ class ControllerMain {
     }
 
     private fun drawOriginalCanvas() {
-        val gc = OriginalCanvas.graphicsContext2D
-        gc.clearRect(0.0, 0.0, OriginalCanvas.width, OriginalCanvas.height) // Clear previous drawings
+        // Clear the previous result
+        ResultLabelAREA.text = ""
+
+        // Build a string to display the original nodes
+        val originalText = StringBuilder()
 
         // Example: Draw a simple representation (adjust based on your data structure)
         for ((index, pair) in integerPairs.withIndex()) {
-            gc.fillText("Node: ${pair.joinToString(", ")}", 10.0, (index + 1) * 20.0)
+            originalText.append("Node: ${pair.joinToString(", ")}\n")
         }
+
+        // Set the text of ResultLabelAREA
+        ResultLabelAREA.text = originalText.toString()
     }
 
     private fun drawChangesCanvas(result: List<List<Int>>) {
-        val gc = ChangesCanvas.graphicsContext2D
-        gc.clearRect(0.0, 0.0, ChangesCanvas.width, ChangesCanvas.height) // Clear previous drawings
+        // Clear the previous swapped results
+        SwappedLabelAREA.text = ""
 
-        // Example: Draw the results after the swap (adjust based on your data structure)
+        // Build a string to display the swapped results
+        val swappedText = StringBuilder()
+
+        // Example: Display the results after the swap (adjust based on your data structure)
         for ((index, inorder) in result.withIndex()) {
-            gc.fillText("Swapped: ${inorder.joinToString(", ")}", 10.0, (index + 1) * 20.0)
+            swappedText.append("Swapped: ${inorder.joinToString(", ")}\n")
         }
+
+        // Set the text of SwappedLabelAREA
+        SwappedLabelAREA.text = swappedText.toString()
     }
+
 
     fun setStage(stage: Stage) {
         this.stage = stage
