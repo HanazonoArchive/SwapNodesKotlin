@@ -49,8 +49,22 @@ public class Algorithm1 {
     private static void swap(TreeNode node, int depth, int target) {
         if (node == null) return;
 
-        // Swap children nodes at the specified depth
+        // Check if we need to swap at this depth
         if (depth % target == 0) {
+            // Print the swapping information
+            System.out.println("Swapping at depth " + depth + ": Node " + node.id);
+
+            if (node.left != null && node.right != null) {
+                System.out.println("Swapping left child " + node.left.id + " with right child " + node.right.id);
+            } else if (node.left != null) {
+                System.out.println("Swapping left child " + node.left.id + " with null");
+            } else if (node.right != null) {
+                System.out.println("Swapping null with right child " + node.right.id);
+            } else {
+                System.out.println("Both children are null, no swap needed.");
+            }
+
+            // Perform the swap
             TreeNode temp = node.left;
             node.left = node.right;
             node.right = temp;
